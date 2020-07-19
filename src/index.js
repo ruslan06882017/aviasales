@@ -1,5 +1,3 @@
-import './module'
-import { ruslan } from './module'
-import './scss/index.scss'
-ruslan()
-console.log(`Working ...`)
+// import './scss/index.scss'
+
+console.log(`Hello 19 July`)
