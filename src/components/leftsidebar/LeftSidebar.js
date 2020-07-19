@@ -1,5 +1,5 @@
-import { AviasalesComponent } from "../../aviaSalesComponent";
+import { AviasalesComponent } from "../../core/AviasalesComponent";
 
-export class LeftSidebar extends AviasalesComponent {
+export default class LeftSidebar extends AviasalesComponent {
 
 }

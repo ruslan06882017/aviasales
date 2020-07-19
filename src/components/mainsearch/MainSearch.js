@@ -1,4 +1,4 @@
-export class MainSearch {
+export default class MainSearch {
   constructor (selector, options){
     this.$el = document.querySelector(selector)
     this.components = options.components || []

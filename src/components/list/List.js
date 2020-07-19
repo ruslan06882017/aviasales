@@ -1,5 +1,5 @@
-import { AviasalesComponent } from "../../aviaSalesComponent";
+import { AviasalesComponent } from "../../core/AviasalesComponent";
 
-export class List extends AviasalesComponent{
+export default class List extends AviasalesComponent{
   
 }

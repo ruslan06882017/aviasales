@@ -1,5 +1,5 @@
-import { AviasalesComponent } from "../../aviaSalesComponent";
+import { AviasalesComponent } from "../../core/AviasalesComponent";
 
-export class TopFilter extends AviasalesComponent{
+export default class TopFilter extends AviasalesComponent{
 
 }

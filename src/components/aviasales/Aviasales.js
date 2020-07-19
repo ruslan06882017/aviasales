@@ -1,4 +1,3 @@
-
 export class Aviasales {
   constructor (selector, options){
     this.$el = document.querySelector(selector)
