@@ -17,8 +17,27 @@ export default class MainSearch extends AviasalesComponent{
   }
 
   toHTML(){
-    return `
-      <input type="text" class="form-control" placeholder="Username">
+    return ` <br>
+      <div class="main-search-groups">
+    
+           <input type="text" class="form-control from-city" id="fromCity" placeholder="From City">
+           <input type="text" class="form-control to-city" id="toCity" placeholder="to City">
+
+           <input type="text" class="form-control from-date" id="fromDate" placeholder="From Date">
+           <input type="text" class="form-control to-date" id="toDate" placeholder="To Date">
+
+          <select class="form-control" id="passenger">
+           <option>1</option>
+           <option>2</option>
+           <option>3</option>
+           <option>4</option>
+           <option>5</option>
+         </select>
+
+        
+         <button type="button" class="btn btn-primary">Найти</button>
+      </div>
+      <br> <br>
     `
   }
 

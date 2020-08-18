@@ -1,5 +1,21 @@
-$red: grey;
+/* $red: grey;
 
 body {
   background: $red
+} */
+
+.main-search-groups{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+
+.main-search-groups input{
+  width: 250px;
+  margin-right: 10px;
+}
+
+.main-search-groups select{
+  width: 250px;
 }
