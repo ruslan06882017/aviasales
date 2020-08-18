@@ -9,6 +9,7 @@ export default class MainSearch extends AviasalesComponent{
  */
  static className = `main_search`
   constructor($root){
+    // console.log($root)
     super($root, {
       name: 'MainSearch',
       listeners: ['input', 'click']

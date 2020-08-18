@@ -14,7 +14,7 @@ export class AviasalesComponent extends DomListener {
     this.initDomListeners()
   }
 
-  destrtoy(){
+  destroy(){
     this.removeDomListeners()
   }
 

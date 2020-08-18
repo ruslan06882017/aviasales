@@ -1,8 +1,9 @@
 import { AviasalesComponent } from "../../core/AviasalesComponent";
+import { createData } from "./data.template";
 
 export default class List extends AviasalesComponent{
   static className = `list`
   toHTML(){
-    return `<h1> List </h1>`
+    return createData()
   }
 }

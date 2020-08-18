@@ -12,6 +12,11 @@ export class Aviasales {
     this.components = this.components.map(Component => {
       const $el = $.create('div', Component.className)
       const component = new Component($el)
+      // DEGUB
+      // console.log(component.name)
+/*       if (component.name){
+        window['c' + component.name] = component
+      } */
       $el.html(component.toHTML())
       $root.append($el)
       return component
@@ -22,6 +27,7 @@ export class Aviasales {
 
   render(){
     this.$el.append(this.getRoot())
-    this.components.map(component => component.init());
+    this.components.forEach(component => component.init())
+    // console.log(this.components)
   }
 }
