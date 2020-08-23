@@ -1,5 +1,5 @@
 import { AviasalesComponent } from "../../core/AviasalesComponent"
-
+import {apiService} from '../../services/api.service'
 
 export default class AddFlightPage extends AviasalesComponent{
 
@@ -20,33 +20,33 @@ export default class AddFlightPage extends AviasalesComponent{
 
           <form>
           <div class="form-group">
-            <label for="fromFld">Откуда</label>
-            <input type="text" class="form-control" id="fromFld"">
+            <label for="fromCity">Откуда</label>
+            <input type="text" class="form-control" id="fromCity" required>
           </div>
 
           <div class="form-group">
-            <label for="toFld">Куда</label>
-            <input type="text" class="form-control" id="toFld"">
+            <label for="toCity">Куда</label>
+            <input type="text" class="form-control" id="toCity" required>
           </div>
 
           <div class="form-group">
             <label for="fromDate">Дата вылета оттуда</label>
-            <input type="text" class="form-control" id="fromDate"">
+            <input type="text" class="form-control" id="fromDate" required>
           </div>
 
           <div class="form-group">
             <label for="toDate">Дата вылета туда</label>
-            <input type="text" class="form-control" id="toDate"">
+            <input type="text" class="form-control" id="toDate" required>
           </div>
 
           <div class="form-group">
             <label for="passenger">Пассажир</label>
-            <input type="text" class="form-control" id="passenger"">
+            <input type="text" class="form-control" id="passenger">
           </div>
 
           <div class="form-group">
             <label for="transfer">Пересадка</label>
-            <input type="text" class="form-control" id="transfer"">
+            <input type="text" class="form-control" id="transfer">
           </div>
 
           <button type="submit" class="btn btn-primary">Submit</button>
@@ -62,36 +62,99 @@ export default class AddFlightPage extends AviasalesComponent{
     // console.log('on input', event.target.value)
   }
 
-  onClick(event){
+  async onClick(event){
     event.preventDefault()
-    const from = document.querySelector(`#fromFld`).value;
-    // let formData = new FormData();
-    // formData.append('from', from);
+
+    if (event.target.classList.contains('btn-primary')){
+
+
+      const fromCity = document.querySelector(`#fromCity`);
+      const toCity = document.querySelector(`#toCity`);
+  
+      const fromDate = document.querySelector(`#fromDate`);
+      const toDate = document.querySelector(`#toDate`);
+  
+      const transfer = document.querySelector(`#transfer`);
+      const passenger = document.querySelector(`#passenger`);
+  
+
+      // Validation
+
+
+      // From city
+      if (!fromCity.value){
+        clearError(fromCity)
+      } else {
+        validStatus(fromCity)
+      }
+
+      // toCity city
+      if (!toCity.value){
+        clearError(toCity)
+      } else {
+        validStatus(toCity)
+      }
+
+      // fromDate
+      if (!fromDate.value){
+        clearError(fromDate)
+      } else {
+        validStatus(fromDate)
+      }
+
+      // toDate
+      if (!toDate.value){
+        clearError(toDate)
+      } else {
+        validStatus(toDate)
+      }
+
+      // transfer
+      if (!transfer.value){
+        clearError(transfer)
+      } else {
+        validStatus(transfer)
+      }
+
+      // Passenger
+      if (!passenger.value){
+        clearError(passenger)
+      } else {
+        validStatus(passenger)
+      }
+
+       // Prepare for Firebase
+      const formData = {
+        toCity: fromCity.value,
+        toCity: toCity.value,
+        fromDate: fromDate.value,
+        toDate: toDate.value,
+        transfer: transfer.value,
+        passenger: passenger.value
+      }
+      // Send to 
+       await apiService.createPost(formData)
+    }
+
     
-  // Your web app's Firebase configuration
-  let firebaseConfig = {
-    apiKey: "AIzaSyBfNLDiz3cTEZyroGtDxK_sWUu5hl6b5x0",
-    authDomain: "test-4f09e.firebaseapp.com",
-    databaseURL: "https://test-4f09e.firebaseio.com",
-    projectId: "test-4f09e",
-    storageBucket: "test-4f09e.appspot.com",
-    messagingSenderId: "28618992518",
-    appId: "1:28618992518:web:7ab59c399eca170df55a07"
-  };
-  // Initialize Firebase
- 
-  if (!firebase.apps.length){
-    firebase.initializeApp(firebaseConfig);
 
   }
 
-   let messageRef = firebase.database().ref('messages');
-   let newMessageRef = messageRef.push()
-    newMessageRef.set({
-      from: 'Ruslan 007'
-    })
-    
+}
 
-  }
+function clearError(control){
+  
+  control.closest('.form-group').removeChild(control.nextSibling);
+  control.classList.add('is-invalid')
+  let hindDiv = document.createElement('div')
+  hindDiv.className = 'invalid-feedback'
+  let textNode = document.createTextNode('Not correct details')
+  hindDiv.appendChild(textNode)    
+  control.parentNode.appendChild(hindDiv)
 
+}
+
+function validStatus(control){
+  control.classList.remove('is-invalid')
+  control.classList.add('is-valid')
 }
