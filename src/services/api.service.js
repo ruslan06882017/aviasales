@@ -15,5 +15,19 @@ class ApiService {
       console.error(error)
     }
   }
+
+  async getPosts(){
+
+    try {
+      const request = new Request(this.url + '/posts.json', {
+        method: 'get'
+      })
+      const response = await fetch(request)
+      return await response.json()
+    } catch (error){
+      console.error(error)
+    }
+
+  }
 }
 export const apiService = new ApiService(`https://proj-aviasales.firebaseio.com/`)

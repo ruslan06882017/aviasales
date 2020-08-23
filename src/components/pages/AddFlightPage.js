@@ -10,14 +10,16 @@ export default class AddFlightPage extends AviasalesComponent{
       name: 'AddFlightPage',
       listeners: ['input', 'click']
     })
+
   }
+
 
   toHTML(){
     return ` 
-
-    <div class="row">
+    <div id="loader"></div> 
+    <div class="row main-bg">
       <div class="col-lg-6">
-
+      
           <form>
           <div class="form-group">
             <label for="fromCity">Откуда</label>
@@ -41,12 +43,12 @@ export default class AddFlightPage extends AviasalesComponent{
 
           <div class="form-group">
             <label for="passenger">Пассажир</label>
-            <input type="text" class="form-control" id="passenger">
+            <input type="text" class="form-control" id="passenger" required>
           </div>
 
           <div class="form-group">
             <label for="transfer">Пересадка</label>
-            <input type="text" class="form-control" id="transfer">
+            <input type="text" class="form-control" id="transfer" required>
           </div>
 
           <button type="submit" class="btn btn-primary">Submit</button>
@@ -80,70 +82,99 @@ export default class AddFlightPage extends AviasalesComponent{
 
       // Validation
 
-
+      let isFormValid = 0;
       // From city
       if (!fromCity.value){
         clearError(fromCity)
+        isFormValid ++;
       } else {
         validStatus(fromCity)
+
       }
 
       // toCity city
       if (!toCity.value){
         clearError(toCity)
+        isFormValid ++;
       } else {
         validStatus(toCity)
+
       }
 
       // fromDate
       if (!fromDate.value){
         clearError(fromDate)
+        isFormValid ++;
       } else {
         validStatus(fromDate)
+
       }
 
       // toDate
       if (!toDate.value){
         clearError(toDate)
+        isFormValid ++;
       } else {
         validStatus(toDate)
-      }
 
-      // transfer
-      if (!transfer.value){
-        clearError(transfer)
-      } else {
-        validStatus(transfer)
       }
 
       // Passenger
+      
       if (!passenger.value){
         clearError(passenger)
+        isFormValid ++;
+        // console.log(`no value`)
       } else {
         validStatus(passenger)
+
       }
+
+
+      // transfer
+
+      if (!transfer.value){
+        clearError(transfer)
+        isFormValid ++;
+      } else {
+        validStatus(transfer)
+
+      }
+
+
+      console.log(`isFormValid = `+ isFormValid);
 
        // Prepare for Firebase
-      const formData = {
-        toCity: fromCity.value,
-        toCity: toCity.value,
-        fromDate: fromDate.value,
-        toDate: toDate.value,
-        transfer: transfer.value,
-        passenger: passenger.value
-      }
-      // Send to 
-       await apiService.createPost(formData)
-    }
+      if (isFormValid == 0){
+          const loader = document.getElementById("loader")
+          const mainBg = document.querySelector('.main-bg')
+          loader.classList.add('loader');
+          mainBg.classList.add('main-bg-blur');
 
-    
+
+          const formData = {
+            fromCity: fromCity.value,
+            toCity: toCity.value,
+            fromDate: fromDate.value,
+            toDate: toDate.value,
+            transfer: transfer.value,
+            passenger: passenger.value
+          }
+          // Send to 
+          await apiService.createPost(formData)
+          loader.classList.remove('loader');
+          mainBg.classList.remove('main-bg-blur');
+
+
+      }
+    }
 
   }
 
+ 
 }
 
 function clearError(control){
-  
   control.closest('.form-group').removeChild(control.nextSibling);
   control.classList.add('is-invalid')
   let hindDiv = document.createElement('div')
@@ -158,3 +189,15 @@ function validStatus(control){
   control.classList.remove('is-invalid')
   control.classList.add('is-valid')
 }
+/* 
+function clearFields(){
+  document.querySelector(`#fromCity`).value = ''
+  document.querySelector(`#toCity`).value = ''
+
+  document.querySelector(`#fromDate`).value = ''
+  document.querySelector(`#toDate`).value = ''
+
+  document.querySelector(`#transfer`).value = ''
+  document.querySelector(`#passenger`).value = ''
+
+} */
