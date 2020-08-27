@@ -3,6 +3,7 @@ import { DomListener } from "./DomListener";
 export class AviasalesComponent extends DomListener {
   constructor($root, options = {}){
     super($root, options.listeners)
+    // console.log(options.listeners)
   }
 
   // Возращает шаблон компонента

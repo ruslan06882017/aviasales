@@ -13,11 +13,13 @@ export class DomListener {
     // console.log(this.listeners)
     this.listeners.forEach(listener => {
       const method = getMethodName(listener)
+      
       const name = this.name || ''
       if (!this[method]){
         throw new Error(`Method ${method} not implemented in ${name} component`)
       }
       this[method] = this[method].bind(this)
+      // console.log(this.$root)
       this.$root.on(listener, this[method])
     })
   }
@@ -25,7 +27,7 @@ export class DomListener {
   removeDomListeners(){
     this.listeners.forEach(listener => {
       const method = getMethodName(listener)
-      console.log('remove', this[method])
+      // console.log('remove', this[method])
       this.$root.off(listener)
     })
   }

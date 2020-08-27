@@ -5,14 +5,11 @@ export default class AddFlightPage extends AviasalesComponent{
 
  static className = `addfligh_page`
   constructor($root){
-    // console.log($root)
     super($root, {
       name: 'AddFlightPage',
       listeners: ['input', 'click']
     })
-
   }
-
 
   toHTML(){
     return ` 
@@ -61,7 +58,7 @@ export default class AddFlightPage extends AviasalesComponent{
 
   onInput(event){
     // console.log(event)
-    // console.log('on input', event.target.value)
+    console.log('on input', event.target.value)
   }
 
   async onClick(event){

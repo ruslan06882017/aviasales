@@ -27,7 +27,12 @@ class ApiService {
     } catch (error){
       console.error(error)
     }
+  }
+
+  removePost() {
 
   }
+
+
 }
-export const apiService = new ApiService(`https://proj-aviasales.firebaseio.com/`)
+export const apiService = new ApiService(`https://ruslan-98c2d.firebaseio.com`)
