@@ -1,6 +1,7 @@
 import './scss/index.scss'
 import { Router } from './core/routes/Router'
 import { DashboardsPage } from './pages/DashboardPage'
+// var $ = require( "jquery" );
 
 
 const { Aviasales } = require("./components/aviasales/Aviasales");
@@ -13,12 +14,16 @@ import List from './components/list/List'
 
 
 const avia = new Aviasales('#app', {
-  components: [MainSearch, TopFilter, List]
-  //  components: [AddFlightPage]
+  // components: [MainSearch, TopFilter, List]
+   components: [AddFlightPage]
   // components: [ListView]
 })
 
 avia.render()
+
+
+// $('#dtFields').datepicker({ format: "yyyy/mm/dd" });
+
 
 /* 
 new Router('#app', {

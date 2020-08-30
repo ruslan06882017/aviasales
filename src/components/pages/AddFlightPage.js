@@ -1,5 +1,6 @@
 import { AviasalesComponent } from "../../core/AviasalesComponent"
 import {apiService} from '../../services/api.service'
+// var $ = require( "jquery" ); 
 
 export default class AddFlightPage extends AviasalesComponent{
 
@@ -18,9 +19,14 @@ export default class AddFlightPage extends AviasalesComponent{
       <div class="col-lg-6">
       
           <form>
+
+
+          <input class="datepicker" data-date-format="mm/dd/yyyy">
+
+          
           <div class="form-group">
             <label for="fromCity">Откуда</label>
-            <input type="text" class="form-control" id="fromCity" required>
+            <input type="text" value="dfsdf" class="form-control" id="fromCity" required>
           </div>
 
           <div class="form-group">
@@ -31,6 +37,7 @@ export default class AddFlightPage extends AviasalesComponent{
           <div class="form-group">
             <label for="fromDate">Дата вылета оттуда</label>
             <input type="text" class="form-control" id="fromDate" required>
+            
           </div>
 
           <div class="form-group">
@@ -38,6 +45,8 @@ export default class AddFlightPage extends AviasalesComponent{
             <input type="text" class="form-control" id="toDate" required>
           </div>
 
+
+          
           <div class="form-group">
             <label for="passenger">Пассажир</label>
             <input type="text" class="form-control" id="passenger" required>
@@ -55,6 +64,18 @@ export default class AddFlightPage extends AviasalesComponent{
     </div>
     `
   }
+
+
+  init(){
+     super.init()
+    // console.log($('#dtFields').attr('class'))
+    // $('#dtFields').datepicker({ format: "yyyy/mm/dd" });
+    $('.datepicker').datepicker({ format: "yyyy/mm/dd" });
+
+  }
+
+
+
 
   onInput(event){
     // console.log(event)
